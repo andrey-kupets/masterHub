@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2020",
+    "declaration": false,
+    "sourceMap": true,
+    "outDir": "./dist"
+  },
+  "exclude": [
+    "dist",
+    "node_modules",
+    "tests"
+  ]
+}
