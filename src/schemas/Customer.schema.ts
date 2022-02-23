@@ -1,6 +1,6 @@
 import { Document, Model, model, Schema } from 'mongoose';
 
-import { ICustomer } from '../interfaces/customer';
+import { ICustomer } from '../interfaces';
 
 export type CustomerType = ICustomer & Document;
 
@@ -10,13 +10,14 @@ export const CustomerSchema: Schema = new Schema<ICustomer>(
       type: 'string',
       required: true,
       trim: true,
-      lowercase: true,
+      lowercase: true
     },
     lastName: {
       type: 'string',
       required: false,
       trim: true,
       lowercase: true,
+      default: ''
     },
     password: {
       type: 'string',
