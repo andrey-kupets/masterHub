@@ -1,6 +1,7 @@
 import { Document, Model, model, Schema } from 'mongoose';
 
 import { ICustomer } from '../interfaces';
+import { ECollectionNames } from '../enum';
 
 export type CustomerType = ICustomer & Document;
 
@@ -43,5 +44,5 @@ export const CustomerSchema: Schema = new Schema<ICustomer>(
   }
 );
 
-export const CustomerModel: Model<ICustomer> = model('customer', CustomerSchema);
+export const CustomerModel: Model<ICustomer> = model(ECollectionNames.CUSTOMER, CustomerSchema);
 

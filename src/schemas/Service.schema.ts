@@ -2,6 +2,7 @@ import { Document, Model, model, Schema } from 'mongoose';
 
 import { IService } from '../interfaces';
 import { ServiceTypeSchema } from './ServiceType.schema';
+import { ECollectionNames } from '../enum';
 
 export type ServiceType = IService & Document;
 
@@ -31,5 +32,5 @@ export const ServiceSchema: Schema = new Schema<IService>(
   }
 );
 
-export const ServiceModel: Model<IService> = model('service', ServiceSchema);
+export const ServiceModel: Model<IService> = model(ECollectionNames.SERVICE, ServiceSchema);
 

@@ -1,6 +1,7 @@
 import { Document, Model, model, Schema, Types } from 'mongoose';
 
 import { IMaster } from '../interfaces';
+import { ECollectionNames } from '../enum';
 
 export type MasterType = IMaster & Document;
 
@@ -33,13 +34,13 @@ export const MasterSchema: Schema = new Schema<IMaster>(
       type: [Types.ObjectId],
       default: [],
       index: true,
-      ref: 'service'
+      ref: ECollectionNames.SERVICE
     },
     skills: {
       type: [Types.ObjectId],
       default: [],
       index: true,
-      ref: 'ServiceType'
+      ref: ECollectionNames.SERVICE_TYPE
     }
   },
   {
@@ -55,5 +56,5 @@ export const MasterSchema: Schema = new Schema<IMaster>(
   }
 );
 
-export const MasterModel: Model<IMaster> = model('master', MasterSchema);
+export const MasterModel: Model<IMaster> = model(ECollectionNames.MASTER, MasterSchema);
 
