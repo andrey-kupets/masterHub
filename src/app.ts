@@ -2,18 +2,21 @@ import * as cors from 'cors';
 import * as express from 'express';
 import * as mongoose from 'mongoose';
 import helmet from 'helmet';
-import { config } from "./config";
+
+import { config } from './config';
+import { serviceRouter } from './routes';
 
 class App {
   public readonly app: express.Application = express();
 
   constructor() {
-    // TODO helmet, cors, fileUpload
+    // TODO fileUpload
     this.app.use(cors(this.configureCors));
     this.app.use(express.json());
     this.app.use(express.urlencoded({extended: true}));
     this.app.use(helmet());
 
+    this.mountRoutes();
     this.setupDB();
   }
 
@@ -39,6 +42,10 @@ class App {
     db.on('error', () => {
       console.log('DB ERROR');
     })
+  }
+
+  private mountRoutes(): void {
+    this.app.use('/services', serviceRouter);
   }
 }
 
