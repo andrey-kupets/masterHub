@@ -1,13 +1,11 @@
-import { Document, Model, model, Schema } from 'mongoose';
+import { Document, Model, model, Schema, Types } from 'mongoose';
 
 import { IService } from '../interfaces';
-import { ServiceTypeSchema } from './ServiceType.schema';
 import { ECollectionNames } from '../enum';
 
 export type ServiceType = IService & Document;
 
-export const ServiceSchema: Schema = new Schema<IService>(
-  {
+export const ServiceSchema: Schema = new Schema<IService>({
     title: {
       type: 'string',
       required: true,
@@ -15,8 +13,9 @@ export const ServiceSchema: Schema = new Schema<IService>(
       lowercase: true
     },
     type: {
-      type: [ServiceTypeSchema],
-      default: []
+      type: [Types.ObjectId],
+      default: [],
+      ref: ECollectionNames.SERVICE_TYPE
     }
    },
   {

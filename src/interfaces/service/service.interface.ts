@@ -1,10 +1,11 @@
-import * as mongoose from 'mongoose';
+// @ts-ignore
+import mongoose from 'mongoose';
 import { IServiceType } from './service-type.interface';
 
 export interface IService {
   title: string
   type: {
-    type: [IServiceType],
+    type: [mongoose.Types.ObjectId],
     default: []
   }
 }

@@ -1,11 +1,16 @@
-import { Document, Schema } from 'mongoose';
+import { Document, model, Model, Schema, Types } from 'mongoose';
 
 import { IServiceType } from '../interfaces';
+import { ECollectionNames } from '../enum';
 
-export type ServiceType = IServiceType & Document; // maybe export type ServiceTypeType ??
+export type ServiceTypeType = IServiceType & Document;
 
-export const ServiceTypeSchema: Schema = new Schema<IServiceType>(
-  {
+export const ServiceTypeSchema: Schema = new Schema<IServiceType>({
+    service_id: {
+      required: true,
+      type: Types.ObjectId,
+      ref: ECollectionNames.SERVICE
+    },
     title: {
       type: 'string',
       required: true,
@@ -24,5 +29,7 @@ export const ServiceTypeSchema: Schema = new Schema<IServiceType>(
     timestamps: true
   }
 );
+
+export const ServiceTypeModel: Model<IServiceType> = model(ECollectionNames.SERVICE_TYPE, ServiceTypeSchema);
 
 

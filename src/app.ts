@@ -5,7 +5,7 @@ import * as morgan from 'morgan';
 import helmet from 'helmet';
 
 import { config } from './config';
-import { serviceRouter } from './routes';
+import { serviceRouter, serviceTypeRouter } from './routes';
 
 class App {
   public readonly app: express.Application = express();
@@ -51,6 +51,7 @@ class App {
 
   private mountRoutes(): void {
     this.app.use('/services', serviceRouter);
+    this.app.use('/service-types', serviceTypeRouter);
   }
 }
 

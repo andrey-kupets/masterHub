@@ -1,4 +1,4 @@
-// const router = require('express').Router;
+// const router = require('express').Router();
 import { Router } from 'express';
 
 import { serviceController } from '../../controllers';

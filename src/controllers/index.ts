@@ -1,1 +1,2 @@
-export * from './service.controller';
+export * from './service';
+export * from './service-type';
