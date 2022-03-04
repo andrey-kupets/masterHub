@@ -22,10 +22,9 @@ class App {
     this.setupDB();
   }
 
-  //    TODO setup DB
   private configureCors(origin: any, callback: any) {
     const whiteList = config.ALLOWED_ORIGIN.split(';');
-
+    // TODO RequestExtended;
     // TODO fix
     return callback(null, true);
 

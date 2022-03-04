@@ -10,7 +10,8 @@ export const ServiceSchema: Schema = new Schema<IService>({
       type: 'string',
       required: true,
       trim: true,
-      lowercase: true
+      lowercase: true,
+      unique: true
     },
     type: {
       type: [Types.ObjectId],
