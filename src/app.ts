@@ -1,6 +1,7 @@
 import * as cors from 'cors';
 import * as express from 'express';
 import * as mongoose from 'mongoose';
+import * as morgan from 'morgan';
 import helmet from 'helmet';
 
 import { config } from './config';
@@ -15,6 +16,7 @@ class App {
     this.app.use(express.json());
     this.app.use(express.urlencoded({extended: true}));
     this.app.use(helmet());
+    this.app.use(morgan('dev'));
 
     this.mountRoutes();
     this.setupDB();
@@ -23,6 +25,9 @@ class App {
   //    TODO setup DB
   private configureCors(origin: any, callback: any) {
     const whiteList = config.ALLOWED_ORIGIN.split(';');
+
+    // TODO fix
+    return callback(null, true);
 
     if (!origin) {
       return callback(null, true);
