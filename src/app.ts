@@ -52,6 +52,8 @@ class App {
     this.app.use('/services', serviceRouter);
     this.app.use('/service-types', serviceTypeRouter);
   }
+
+
 }
 
 export const app = new App().app;

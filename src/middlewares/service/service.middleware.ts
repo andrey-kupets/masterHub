@@ -3,7 +3,7 @@ import { ServiceModel } from '../../schemas';
 import { IService } from '../../interfaces';
 
 class ServiceMiddleware {
-  async checkDuplicateNames (req: Request, res: Response, next: NextFunction) {
+  async checkServiceDuplicates (req: Request, res: Response, next: NextFunction) {
     try {
       const { title } = req.body as Partial<IService>;
 

@@ -6,6 +6,6 @@ import { serviceMiddleware } from '../../middlewares';
 
 const router = Router();
 
-router.post('/', serviceMiddleware.checkDuplicateNames, serviceController.createService);
+router.post('/', serviceMiddleware.checkServiceDuplicates, serviceController.createService);
 
 export const serviceRouter = router;
