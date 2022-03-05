@@ -7,6 +7,7 @@ import helmet from 'helmet';
 
 import { config } from './config';
 import { serviceRouter, serviceTypeRouter } from './routes';
+import { ErrorStatusEnum } from './error';
 
 class App {
   public readonly app: express.Application = express();
@@ -58,7 +59,7 @@ class App {
 
   private mainErrorHandler(err: Error | any, req: Request, res: Response, next: NextFunction) {
     res
-      .status(err.status || 500)
+      .status(err.status || ErrorStatusEnum.SERVER_ERROR)
       .json({
         message: err.message || 'Server error'
       })

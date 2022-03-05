@@ -1,7 +1,7 @@
-import { Request, Response, NextFunction } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { ServiceModel } from '../../schemas';
 import { IService } from '../../interfaces';
-import { CustomError } from '../../error';
+import { CustomError, ErrorStatusEnum } from '../../error';
 
 class ServiceMiddleware {
   async checkServiceDuplicates (req: Request, res: Response, next: NextFunction) {
@@ -13,7 +13,7 @@ class ServiceMiddleware {
       });
 
       if (serviceByTitle) {
-        next(new CustomError(`service with ${title}-title is already exist`, 409));
+        next(new CustomError(`service with ${title}-title is already exist`, ErrorStatusEnum.CONFLICT));
         return;
       }
 
