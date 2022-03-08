@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
+
 import { ServiceModel } from '../../schemas';
-import { IService } from '../../interfaces';
+import { IRequestExtended, IService } from '../../interfaces';
 import { CustomError, ErrorStatusEnum } from '../../error';
 
 class ServiceMiddleware {
@@ -23,7 +24,7 @@ class ServiceMiddleware {
     }
   }
 
-  async checkIsServicePresent(req: Request, res: Response, next: NextFunction) {
+  async checkIsServicePresent(req: IRequestExtended, res: Response, next: NextFunction) {
     try {
       const { service_id } = req.params;
 
@@ -34,8 +35,7 @@ class ServiceMiddleware {
         return;
       }
 
-      // TODO request extended
-      // req.service = service
+      req.service = service;
       next();
     } catch (e) {
       next(e);

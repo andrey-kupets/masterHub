@@ -13,4 +13,6 @@ router.post('/:service_id',
   serviceTypeController.createServiceType
 );
 
+router.use('/:service_type_id', serviceTypeMiddleware.checkIsServiceTypePresent)
+
 export const serviceTypeRouter = router;
