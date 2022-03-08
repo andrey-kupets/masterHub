@@ -1,15 +1,11 @@
 import { Joi, Segments } from 'celebrate';
-import { CustomError, ErrorStatusEnum } from '../../error';
 
-const createServiceValidator = {
+const createService = {
   [Segments.BODY]: Joi.object({
-    title: Joi
-      .string()
-      .min(2)
-      .max(30)
+    title: Joi.string().min(2).max(30)
   })
 };
 
 export const serviceValidators = {
-  createServiceValidator
+  createService
 };

@@ -7,7 +7,7 @@ import { serviceValidators } from '../../validators';
 
 const router = Router();
 
-router.post('/', celebrate(serviceValidators.createServiceValidator), serviceMiddleware.checkServiceDuplicates, serviceController.createService);
+router.post('/', celebrate(serviceValidators.createService), serviceMiddleware.checkServiceDuplicates, serviceController.createService);
 
 router.use('/:service_id',serviceMiddleware.checkIsServicePresent);
 
