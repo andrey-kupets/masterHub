@@ -27,11 +27,11 @@ class ServiceTypeMiddleware {
 
   async checkIsServiceTypePresent(req: IRequestExtended, res: Response, next: NextFunction) {
     try {
-      const { service_id } = req.params;
+      const { service_type_id } = req.params;
 
-      const serviceType =  await ServiceTypeModel.findById(service_id);
+      const serviceType =  await ServiceTypeModel.findById(service_type_id);
 
-      if (serviceType) {
+      if (!serviceType) {
         next(new CustomError(`serviceType not found`, ErrorStatusEnum.NOT_FOUND));
         return;
       }

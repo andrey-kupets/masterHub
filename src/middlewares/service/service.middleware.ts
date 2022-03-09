@@ -30,7 +30,7 @@ class ServiceMiddleware {
 
       const service =  await ServiceModel.findById(service_id);
 
-      if (service) {
+      if (!service) {
         next(new CustomError(`service not found`, ErrorStatusEnum.NOT_FOUND));
         return;
       }

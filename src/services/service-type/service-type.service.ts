@@ -20,6 +20,22 @@ class ServiceTypeService {
 
     return createdServiceType;
   }
+
+  async changeServiceId(serviceType: IServiceType, serviceId: string): Promise<IServiceType> {
+    await ServiceModel.updateOne(
+      { _id: serviceType.service_id },
+      {
+        $pull: {type: serviceType._id}
+      });
+
+    await ServiceModel.updateOne(
+      { _id: serviceId},
+      {
+        $addToSet: {type: serviceType._id}
+      });
+
+    return ServiceTypeModel.findByIdAndUpdate(serviceType._id, { service_id: serviceId }, { new: true }) as any;
+  }
 }
 
 export const serviceTypeService = new ServiceTypeService();

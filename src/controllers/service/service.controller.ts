@@ -4,9 +4,9 @@ import { ServiceModel } from '../../schemas';
 class ServiceController {
   async createService(req: Request, res: Response, next: NextFunction) {
     try {
-      await ServiceModel.create(req.body);
+      const createdService = await ServiceModel.create(req.body);
 
-      res.json('OK');
+      res.json(createdService);
     } catch (e) {
       next(e);
     }
