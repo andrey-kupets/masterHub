@@ -22,19 +22,23 @@ class ServiceTypeService {
   }
 
   async changeServiceId(serviceType: IServiceType, serviceId: string): Promise<IServiceType> {
-    await ServiceModel.updateOne(
+    const updatedOldService = ServiceModel.updateOne(
       { _id: serviceType.service_id },
       {
         $pull: {type: serviceType._id}
       });
 
-    await ServiceModel.updateOne(
+    const updatedNewService = ServiceModel.updateOne(
       { _id: serviceId},
       {
         $addToSet: {type: serviceType._id}
       });
 
-    return ServiceTypeModel.findByIdAndUpdate(serviceType._id, { service_id: serviceId }, { new: true }) as any;
+    const updatedServiceType = ServiceTypeModel.findByIdAndUpdate(serviceType._id, { service_id: serviceId }, { new: true }) as any;
+
+    const promises = await Promise.all([updatedOldService, updatedNewService, updatedServiceType]);
+
+    return promises[2];
   }
 }
 
